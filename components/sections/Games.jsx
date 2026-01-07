@@ -1,7 +1,7 @@
 export default function Games(){
     return(
         //   Q&A Games Section 
-        <section className="bg-black dark:bg-black relative -mt-16 pt-32 pb-32 z-0">
+        <section className="bg-black   relative -mt-16 pt-32 pb-32 z-0">
           <div className="container mx-auto px-4">
             <div className="text-center mb-20">
               <h2 className="text-5xl md:text-7xl font-black text-white mb-6">
