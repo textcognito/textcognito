@@ -1,6 +1,6 @@
 export default function GetToKnow(){
     return(
-        <section className="bg-black dark:bg-black relative -mt-16 pt-32 pb-40 z-0">
+        <section className="bg-black   relative -mt-16 pt-32 pb-40 z-0">
           <div className="container mx-auto px-4 text-center">
             <div className="mb-16">
               <h2 className="text-5xl md:text-7xl font-black text-white">
