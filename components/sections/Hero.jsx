@@ -1,8 +1,8 @@
 
 export default function Hero() {
     return (
+        // <section className="relative min-h-screen flex flex-col justify-center items-center pt-20 pb-32 overflow-hidden bg-gradient-to-br from-[#0a4174] via-[#001d39]/70 to-pink-500 rounded-b-[4rem]  z-10">
         <section className="relative min-h-screen flex flex-col justify-center items-center pt-20 pb-32 overflow-hidden bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-b-[4rem] shadow-2xl z-10">
-        {/* <section className="relative min-h-screen flex flex-col justify-center items-center pt-20 pb-32 overflow-hidden bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-b-[4rem] shadow-2xl z-10"> */}
           <div className="absolute top-1/4 left-10 w-24 h-24 bg-yellow-300 rounded-full blur-xl opacity-40 animate-float"></div>
           <div className="absolute bottom-1/3 right-10 w-32 h-32 bg-cyan-300 rounded-full blur-xl opacity-40 animate-float-delayed"></div>
           
