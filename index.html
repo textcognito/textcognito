@@ -1,0 +1,615 @@
+<!-- <!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Textcognito - Anonymous Messaging</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: "#8f48ec",
+                            DEFAULT: "#8c4aea",
+                            dark: "#8949c3",
+                        },
+                        neutral: {
+                            50: '#f9fafb',
+                            100: '#f3f4f6',
+                            200: '#e5e7eb',
+                            800: '#1f2937',
+                            900: '#111827',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ["Outfit", "sans-serif"],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'card': '0 10px 40px -10px rgba(0, 0, 0, 0.08)',
+                        'glow': '0 0 20px rgba(140, 74, 234, 0.3)',
+                    }
+                },
+            },
+        };
+    </script>
+<style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #fcfcfc;
+            color: #111827;
+        }
+        .bg-pattern {
+            background-image: radial-gradient(#8c4aea 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            opacity: 0.03;
+        }
+    </style>
+</head>
+<body class="antialiased text-slate-800">
+<nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+<div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 bg-brand rounded-lg flex items-center justify-center text-white font-bold text-lg">T</span>
+<span class="text-xl font-bold tracking-tight text-brand-dark">Textcognito</span>
+</div>
+<div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+<a class="hover:text-brand transition-colors" href="#">Home</a>
+<a class="hover:text-brand transition-colors" href="#features">Features</a>
+<a class="hover:text-brand transition-colors" href="#about">About</a>
+<a class="hover:text-brand transition-colors" href="#safety">Safety</a>
+</div>
+<div class="hidden md:flex items-center gap-4">
+<a class="text-sm font-medium text-slate-600 hover:text-brand" href="#">Login</a>
+<a class="bg-brand hover:bg-brand-dark text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-all shadow-lg shadow-brand/20" href="#">Sign Up</a>
+</div>
+<button class="md:hidden text-slate-600">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<header class="relative pt-16 pb-24 lg:pt-32 lg:pb-40 overflow-hidden bg-slate-50">
+<div class="absolute inset-0 bg-pattern pointer-events-none"></div>
+<div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-brand/10 rounded-full blur-3xl"></div>
+<div class="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-purple-200/20 rounded-full blur-3xl"></div>
+<div class="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+<div class="max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-600 text-xs font-bold uppercase tracking-wider mb-6">
+<span class="material-symbols-outlined text-sm">bolt</span>
+                Anonymous messaging made simple
+            </div>
+<h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6">
+                Receive Anonymous <span class="text-brand">Messages</span> From Friends
+            </h1>
+<p class="text-lg text-slate-500 mb-10 leading-relaxed max-w-lg">
+                Create your unique link, share it with friends, and receive honest anonymous messages. Safe, simple, and fun!
+            </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="inline-flex justify-center items-center px-8 py-4 bg-brand hover:bg-brand-dark text-white font-semibold rounded-xl shadow-xl shadow-brand/20 transition-all hover:scale-105" href="#">
+                    Get Your Link Free
+                </a>
+<a class="inline-flex justify-center items-center px-8 py-4 bg-white border border-gray-200 text-slate-700 font-semibold rounded-xl hover:bg-gray-50 transition-colors shadow-sm" href="#how-it-works">
+                    See How It Works
+                </a>
+</div>
+<div class="mt-12 flex items-center gap-12 border-t border-gray-200 pt-8">
+<div>
+<div class="text-2xl font-bold text-slate-900">500K+</div>
+<div class="text-xs text-slate-500 uppercase tracking-wide">Active Users</div>
+</div>
+<div>
+<div class="text-2xl font-bold text-slate-900">2M+</div>
+<div class="text-xs text-slate-500 uppercase tracking-wide">Messages Sent</div>
+</div>
+<div>
+<div class="text-2xl font-bold text-slate-900">4.9/5</div>
+<div class="text-xs text-slate-500 uppercase tracking-wide">User Rating</div>
+</div>
+</div>
+</div>
+<div class="relative lg:h-auto">
+<div class="bg-white rounded-3xl p-6 shadow-card border border-gray-100 relative max-w-md mx-auto transform rotate-1 hover:rotate-0 transition-transform duration-500">
+<div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
+<div class="w-12 h-12 bg-brand rounded-full flex items-center justify-center text-white">
+<span class="material-symbols-outlined">link</span>
+</div>
+<div>
+<h3 class="font-bold text-slate-900">Your Unique Link</h3>
+<p class="text-sm text-slate-500">Share with friends</p>
+</div>
+</div>
+<div class="bg-slate-50 rounded-xl p-4 mb-4 flex justify-between items-center text-brand text-sm font-medium">
+                    textcognito.com/yourname
+                    <span class="material-symbols-outlined cursor-pointer">content_copy</span>
+</div>
+<div class="space-y-4">
+<div class="bg-purple-50 p-4 rounded-xl border border-purple-100">
+<div class="flex items-center gap-2 mb-2 text-xs font-bold text-brand uppercase">
+<span class="material-symbols-outlined text-sm">mark_email_unread</span> Anonymous Message
+                        </div>
+<p class="text-slate-700 text-sm">You're such an amazing friend! Keep being awesome! ☀️</p>
+</div>
+<div class="bg-pink-50 p-4 rounded-xl border border-pink-100">
+<div class="flex items-center gap-2 mb-2 text-xs font-bold text-pink-600 uppercase">
+<span class="material-symbols-outlined text-sm">favorite</span> Anonymous Message
+                        </div>
+<p class="text-slate-700 text-sm">Your positivity is contagious! Thanks for being you! ✨</p>
+</div>
+</div>
+</div>
+<div class="absolute -top-10 -right-10 bg-white p-3 rounded-2xl shadow-lg animate-bounce hidden md:block">
+<span class="text-4xl">👋</span>
+</div>
+<div class="absolute -bottom-5 -left-5 bg-white p-3 rounded-2xl shadow-lg hidden md:block">
+<span class="text-4xl">🔥</span>
+</div>
+</div>
+</div>
+</header>
+<section class="py-24 bg-white relative" id="features">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center max-w-3xl mx-auto mb-20">
+<span class="px-4 py-1.5 rounded-full bg-blue-50 text-brand font-bold text-xs uppercase tracking-wider mb-4 inline-block">Features</span>
+<h2 class="text-4xl font-bold text-slate-900 mb-6">Why Choose Textcognito?</h2>
+<p class="text-slate-500 text-lg">Everything you need to receive and manage anonymous messages safely and easily.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-slate-50 p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+<div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">shield</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 mb-3">100% Anonymous</h3>
+<p class="text-slate-500 leading-relaxed">Complete privacy guaranteed. We never reveal sender identities or store identifying information.</p>
+</div>
+<div class="bg-slate-50 p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+<div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">link</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 mb-3">Custom Link</h3>
+<p class="text-slate-500 leading-relaxed">Get your personalized link like textcognito.com/yourname. Easy to remember and share!</p>
+</div>
+<div class="bg-slate-50 p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+<div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 mb-3">Instant Delivery</h3>
+<p class="text-slate-500 leading-relaxed">Receive messages instantly with real-time notifications. Never miss a message!</p>
+</div>
+<div class="bg-slate-50 p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+<div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">filter_alt</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 mb-3">Smart Filters</h3>
+<p class="text-slate-500 leading-relaxed">Advanced spam detection and content filters keep your inbox clean and safe.</p>
+</div>
+<div class="bg-slate-50 p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+<div class="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">share</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 mb-3">Easy Sharing</h3>
+<p class="text-slate-500 leading-relaxed">Share your link directly to social media with one click. Works everywhere!</p>
+</div>
+<div class="bg-slate-50 p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+<div class="w-12 h-12 bg-pink-100 text-pink-600 rounded-xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 mb-3">Analytics</h3>
+<p class="text-slate-500 leading-relaxed">Track views, messages received, and engagement stats in your dashboard.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-slate-50" id="how-it-works">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center max-w-3xl mx-auto mb-20">
+<span class="px-4 py-1.5 rounded-full bg-purple-100 text-brand font-bold text-xs uppercase tracking-wider mb-4 inline-block">How It Works</span>
+<h2 class="text-4xl font-bold text-slate-900 mb-6">Get Started in 3 Simple Steps</h2>
+<p class="text-slate-500 text-lg">Start receiving anonymous messages in under a minute.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 relative group hover:-translate-y-2 transition-transform duration-300">
+<div class="absolute -top-4 -left-4 w-10 h-10 bg-brand text-white rounded-full flex items-center justify-center font-bold shadow-lg z-10">1</div>
+<div class="bg-indigo-50 rounded-2xl h-48 mb-6 overflow-hidden flex items-center justify-center">
+<div class="w-3/4 h-3/4 bg-white rounded-lg shadow-sm overflow-hidden relative">
+<div class="absolute top-2 left-2 w-full h-4 bg-gray-100 rounded-sm"></div>
+<div class="absolute top-8 left-2 right-2 bottom-2 bg-indigo-100 rounded-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-indigo-300">app_registration</span>
+</div>
+</div>
+</div>
+<h3 class="text-xl font-bold text-slate-900 mb-2">Create Your Account</h3>
+<p class="text-slate-500 text-sm">Sign up free and claim your unique username. Takes less than 30 seconds!</p>
+</div>
+<div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 relative group hover:-translate-y-2 transition-transform duration-300">
+<div class="absolute -top-4 -left-4 w-10 h-10 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold shadow-lg z-10">2</div>
+<div class="bg-purple-50 rounded-2xl h-48 mb-6 overflow-hidden flex items-center justify-center">
+<div class="w-3/4 h-3/4 bg-white rounded-lg shadow-sm overflow-hidden relative border border-gray-100">
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-3xl text-purple-400">share</span>
+</div>
+<div class="h-2 w-24 bg-gray-100 rounded-full"></div>
+</div>
+</div>
+</div>
+<h3 class="text-xl font-bold text-slate-900 mb-2">Share Your Link</h3>
+<p class="text-slate-500 text-sm">Share your personalized link on Instagram, Twitter, TikTok, or anywhere you like!</p>
+</div>
+<div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 relative group hover:-translate-y-2 transition-transform duration-300">
+<div class="absolute -top-4 -left-4 w-10 h-10 bg-pink-500 text-white rounded-full flex items-center justify-center font-bold shadow-lg z-10">3</div>
+<div class="bg-pink-50 rounded-2xl h-48 mb-6 overflow-hidden relative">
+<img alt="Friends laughing" class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL2zkhViSV-AyTPuxXxsnGQDljka--oGETxUyCGZ6FBIcn0MreFvnNN_NCrPU0ozCwrnBIfAETwbYd3ZU1uiPnfIa-VZxnBOKPEM-CJ6--r69pB8MUgkzCqbLJ7c5chiUrSvB0hoQxd5DjGDmV6YOM6nwSBMtIBmbf51x7Eznm2hLuUWSZM9k3UG_o_KGEsQg9oLJqF5Tx8VKOUvzfSOv6C6rdVyPVuzEzhecAxAIzBvULznhX2exwVOy_rSflA9BBRJfsjnv2UDZ0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-pink-900/20 to-transparent"></div>
+</div>
+<h3 class="text-xl font-bold text-slate-900 mb-2">Receive Messages</h3>
+<p class="text-slate-500 text-sm">Get instant notifications when friends send you anonymous messages!</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-white">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<span class="px-4 py-1.5 rounded-full bg-blue-50 text-brand font-bold text-xs uppercase tracking-wider mb-4 inline-block">Testimonials</span>
+<h2 class="text-4xl font-bold text-slate-900">Loved by Thousands</h2>
+<p class="text-slate-500 mt-4">See what our users are saying about Textcognito</p>
+</div>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="bg-slate-50 p-8 rounded-2xl border border-gray-100">
+<div class="flex text-yellow-400 mb-4 text-sm">
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+</div>
+<p class="text-slate-700 mb-6 text-sm leading-relaxed">"This app is amazing! I've received so many sweet messages from my friends. It's really fun and completely safe!"</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdwUrRPgZXHy4owlKDK7WIcw1pfVEtaw_sAuE3JH4otE3IyNK-7q1MEIifKO2X5recK4Ke5VDz8lqcougZG0t-k7jN3mnl7RopNgfqOMh2ETy-MEjRfNDW8nH_dYyvo6a--HPWrEThyJQHF556KAx9n20jKvkl_IsQ2myQXOWCh-MHfTr8XV__vzTlqDoVG7WVVEEMJFgnerS2JJCUJYj1-IRFZY3Bj4IIrrrFt3v0LBBOwEplRQ638OnH0mwN74J2nf68T2gF_fXl"/>
+</div>
+<div>
+<div class="font-bold text-slate-900 text-sm">Sarah J.</div>
+<div class="text-xs text-slate-400">High School Student</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-50 p-8 rounded-2xl border border-gray-100">
+<div class="flex text-yellow-400 mb-4 text-sm">
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+</div>
+<p class="text-slate-700 mb-6 text-sm leading-relaxed">"Best anonymous messaging platform! Super easy to use and I love the clean design. Highly recommend!"</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_hAwdvoyr6sR7e-CN46ruSx8KWhU2KgVP53B1DDnVtYWeaQbdLLsJBNZzR70bihvI7gNRgk7Nbaz3dxQgZTEC7WCR0ImBVYFRnwPFHe7JK6pQrtfeU8Lzcyl3vSrJuonMRKQXQ9ZOLVA4W2LnzHqPtTIKk-vsU_huz1uTgWy9FGKW3doX0xZdmjWPFmz11IX-c6bVYShPvw84ArCMKwh0i1fBBaP4adxrr8wcnVdsQA7MW9rWqLMFaVCy0tm3-xv4cwhSTqiyItOK"/>
+</div>
+<div>
+<div class="font-bold text-slate-900 text-sm">Mike R.</div>
+<div class="text-xs text-slate-400">College Student</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-50 p-8 rounded-2xl border border-gray-100">
+<div class="flex text-yellow-400 mb-4 text-sm">
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+</div>
+<p class="text-slate-700 mb-6 text-sm leading-relaxed">"I was skeptical at first, but this is genuinely fun! The privacy features make me feel secure."</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ0XG-clL0INAQ21qH4OHsW86bF9DPohIKwPVqWjW7Zqhk27AvunlGQtQrzZyldXtv9T4st5S3XH5iN64bMXJe1Z_60QKNqQswWgkscI19TL0LcVuV7IeHIvWWgQs4F8P7aw1QjUK-QSNzcTwiJzi1Tf-zO49KkEQuFkPncaUhKsBqB1Akdad78qcr1Mcu-WJMH-A1ReHrqDETTnBZ3bGp4QXX_RCI3nmGit8Dl4piMe_PDn7SkPgEbAZNaz_i6e0OfkjFdcyxaIl4"/>
+</div>
+<div>
+<div class="font-bold text-slate-900 text-sm">Emily W.</div>
+<div class="text-xs text-slate-400">Social Media Manager</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-white" id="contact">
+<div class="max-w-4xl mx-auto px-6">
+<div class="text-center mb-16">
+<span class="px-4 py-1.5 rounded-full bg-blue-50 text-brand font-bold text-xs uppercase tracking-wider mb-4 inline-block">Contact Us</span>
+<h2 class="text-4xl font-bold text-slate-900">Get in Touch</h2>
+<p class="text-slate-500 mt-4">Have questions? We'd love to hear from you!</p>
+</div>
+<div class="bg-slate-50 p-8 md:p-12 rounded-3xl border border-gray-100">
+<div class="grid md:grid-cols-2 gap-8 mb-10">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 bg-brand text-white rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 mb-1">Email Us</h4>
+<p class="text-sm text-slate-500">support@textcognito.com</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 bg-pink-500 text-white rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 mb-1">Response Time</h4>
+<p class="text-sm text-slate-500">Within 24 hours</p>
+</div>
+</div>
+</div>
+<form class="space-y-6">
+<div class="grid md:grid-cols-2 gap-6">
+<div>
+<label class="block text-xs font-bold text-slate-700 uppercase mb-2">Name</label>
+<input class="w-full rounded-lg border-gray-200 bg-white px-4 py-3 text-sm focus:border-brand focus:ring-brand outline-none transition-all" placeholder="Your name" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-slate-700 uppercase mb-2">Email</label>
+<input class="w-full rounded-lg border-gray-200 bg-white px-4 py-3 text-sm focus:border-brand focus:ring-brand outline-none transition-all" placeholder="your@email.com" type="email"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold text-slate-700 uppercase mb-2">Subject</label>
+<input class="w-full rounded-lg border-gray-200 bg-white px-4 py-3 text-sm focus:border-brand focus:ring-brand outline-none transition-all" placeholder="How can we help?" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-slate-700 uppercase mb-2">Message</label>
+<textarea class="w-full rounded-lg border-gray-200 bg-white px-4 py-3 text-sm focus:border-brand focus:ring-brand outline-none transition-all" placeholder="Your message..." rows="4"></textarea>
+</div>
+<button class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-4 rounded-lg transition-colors shadow-lg shadow-brand/20" type="button">
+                    Send Message
+                </button>
+</form>
+</div>
+</div>
+</section>
+<div class="bg-brand relative overflow-hidden text-white">
+<div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+<div class="max-w-4xl mx-auto px-6 py-24 text-center relative z-10">
+<h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
+            Ready to Start Receiving Messages?
+        </h2>
+<p class="text-lg text-white/80 mb-10 max-w-2xl mx-auto">
+            Join thousands of users who are already connecting with friends anonymously.
+        </p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<a class="px-8 py-4 bg-white text-brand font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1" href="#">Create Your Free Account</a>
+<a class="px-8 py-4 bg-transparent border border-white/30 text-white font-bold rounded-xl hover:bg-white/10 transition-colors" href="#">Learn More</a>
+</div>
+</div>
+<footer class="bg-neutral-900 border-t border-white/10 pt-16 pb-12">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10 mb-16">
+<div class="col-span-2 lg:col-span-2">
+<div class="flex items-center gap-2 mb-6">
+<div class="w-8 h-8 bg-brand rounded-lg flex items-center justify-center text-white font-bold">T</div>
+<span class="text-xl font-bold text-white">Textcognito</span>
+</div>
+<p class="text-gray-400 text-sm mb-6 max-w-xs">
+                        The safest way to receive anonymous messages from friends. Built for fun, designed for privacy.
+                    </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors" href="#">
+<span class="text-sm font-bold">Tw</span>
+</a>
+<a class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors" href="#">
+<span class="text-sm font-bold">Ig</span>
+</a>
+<a class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors" href="#">
+<span class="text-sm font-bold">Fb</span>
+</a>
+<a class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors" href="#">
+<span class="text-sm font-bold">Tt</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-white mb-6">Product</h4>
+<ul class="space-y-4 text-sm text-gray-400">
+<li><a class="hover:text-brand transition-colors" href="#">Features</a></li>
+<li><a class="hover:text-brand transition-colors" href="#">Pricing</a></li>
+<li><a class="hover:text-brand transition-colors" href="#">FAQ</a></li>
+<li><a class="hover:text-brand transition-colors" href="#">Roadmap</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-white mb-6">Company</h4>
+<ul class="space-y-4 text-sm text-gray-400">
+<li><a class="hover:text-brand transition-colors" href="#">About Us</a></li>
+<li><a class="hover:text-brand transition-colors" href="#">Contact</a></li>
+<li><a class="hover:text-brand transition-colors" href="#">Blog</a></li>
+<li><a class="hover:text-brand transition-colors" href="#">Careers</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-white mb-6">Legal</h4>
+<ul class="space-y-4 text-sm text-gray-400">
+<li><a class="hover:text-brand transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-brand transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-brand transition-colors" href="#">Cookie Policy</a></li>
+<li><a class="hover:text-brand transition-colors" href="#">Guidelines</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-white/10 pt-8 text-center text-sm text-gray-500">
+<p>© 2024 Textcognito. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html> -->
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Textcognito - Share Link (Dark Mode)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#8f48ec",
+                        secondary: "#8c4aea",
+                        accent: "#8949c3",
+                        background: "#0a0a0a",surface: "#171717",},
+                    fontFamily: {
+                        sans: ["Outfit", "sans-serif"],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px rgba(143, 72, 236, 0.15)',
+                        'card': '0 8px 30px rgba(0,0,0,0.5)',}
+                },
+            },
+        };
+    </script>
+<style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #0a0a0a;
+            color: #e5e7eb;
+        }
+        .instagram-gradient {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+    </style>
+</head>
+<body class="bg-background min-h-screen flex flex-col antialiased selection:bg-primary/30 selection:text-white">
+<nav class="bg-surface/80 backdrop-blur-md border-b border-white/5 sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold shadow-lg shadow-primary/20">T</div>
+<span class="text-xl font-bold tracking-tight text-white">Textcognito</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center gap-2 text-sm font-bold text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span>Settings</span>
+</button>
+<div class="h-6 w-px bg-white/10 hidden md:block"></div>
+<button class="flex items-center gap-2 pl-2">
+<div class="w-9 h-9 rounded-full overflow-hidden border-2 border-white/10 ring-2 ring-transparent hover:ring-primary/40 transition-all">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ0XG-clL0INAQ21qH4OHsW86bF9DPohIKwPVqWjW7Zqhk27AvunlGQtQrzZyldXtv9T4st5S3XH5iN64bMXJe1Z_60QKNqQswWgkscI19TL0LcVuV7IeHIvWWgQs4F8P7aw1QjUK-QSNzcTwiJzi1Tf-zO49KkEQuFkPncaUhKsBqB1Akdad78qcr1Mcu-WJMH-A1ReHrqDETTnBZ3bGp4QXX_RCI3nmGit8Dl4piMe_PDn7SkPgEbAZNaz_i6e0OfkjFdcyxaIl4"/>
+</div>
+</button>
+</div>
+</div>
+</nav>
+<main class="flex-grow flex items-center justify-center p-6 relative overflow-hidden">
+<div class="absolute top-20 left-10 w-72 h-72 bg-purple-900/40 rounded-full blur-[120px] opacity-50 -z-10"></div>
+<div class="absolute bottom-20 right-10 w-72 h-72 bg-blue-900/40 rounded-full blur-[120px] opacity-50 -z-10"></div>
+<div class="w-full max-w-lg bg-[#121212]/90 backdrop-blur-xl rounded-3xl shadow-card border border-white/10 overflow-hidden relative">
+<div class="pt-10 pb-6 px-8 text-center relative z-10 bg-gradient-to-b from-white/5 to-transparent">
+<div class="inline-block relative mb-4">
+<div class="w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-primary to-accent shadow-xl shadow-primary/20">
+<div class="w-full h-full rounded-full border-4 border-[#121212] overflow-hidden bg-[#121212]">
+<img alt="User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ0XG-clL0INAQ21qH4OHsW86bF9DPohIKwPVqWjW7Zqhk27AvunlGQtQrzZyldXtv9T4st5S3XH5iN64bMXJe1Z_60QKNqQswWgkscI19TL0LcVuV7IeHIvWWgQs4F8P7aw1QjUK-QSNzcTwiJzi1Tf-zO49KkEQuFkPncaUhKsBqB1Akdad78qcr1Mcu-WJMH-A1ReHrqDETTnBZ3bGp4QXX_RCI3nmGit8Dl4piMe_PDn7SkPgEbAZNaz_i6e0OfkjFdcyxaIl4"/>
+</div>
+</div>
+<div class="absolute bottom-1 right-1 bg-green-500 w-7 h-7 rounded-full border-[3px] border-[#121212] flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-white font-bold">check</span>
+</div>
+</div>
+<h1 class="text-2xl font-bold text-white mb-1">Sarah J.</h1>
+<p class="text-gray-400 text-sm font-medium">@sarah_j_official</p>
+<div class="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/20 tracking-wide uppercase">
+<span class="material-symbols-outlined text-sm">bolt</span>
+                Your link is active
+            </div>
+</div>
+<div class="px-8 pb-8">
+<div class="bg-white/5 rounded-2xl p-6 border border-white/5 mb-8 shadow-inner">
+<label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 text-center">Your Unique Link</label>
+<div class="flex items-stretch shadow-lg shadow-black/20 rounded-xl overflow-hidden border border-white/10 bg-black/20 group focus-within:border-primary focus-within:ring-4 ring-primary/10 transition-all mb-4">
+<div class="bg-white/5 px-4 py-3 text-gray-400 text-sm flex items-center border-r border-white/5 select-none font-medium">
+                        textcognito.com/
+                    </div>
+<input class="flex-grow bg-transparent px-3 py-3 text-white font-bold outline-none w-full min-w-0 placeholder-gray-600" readonly="" type="text" value="sarah_j_official"/>
+<button class="bg-primary hover:bg-secondary text-white px-6 py-2 font-bold text-sm transition-all flex items-center gap-2 active:bg-primary/90 hover:shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+                        Copy
+                    </button>
+</div>
+<p class="text-center text-xs text-gray-500 leading-relaxed max-w-xs mx-auto">
+                    Share this link in your Instagram bio or Twitter profile to start receiving anonymous messages!
+                </p>
+</div>
+<div class="space-y-3">
+<h3 class="text-center font-bold text-white mb-4">Share Directly</h3>
+<button class="w-full instagram-gradient text-white p-3.5 rounded-xl font-bold shadow-lg shadow-pink-500/10 hover:shadow-pink-500/20 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-3 group">
+<span class="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center group-hover:bg-white/30 transition-colors">
+<span class="material-symbols-outlined text-white text-sm">photo_camera</span>
+</span>
+                     Share on Instagram Story
+                </button>
+<div class="grid grid-cols-2 gap-3">
+<button class="bg-[#FFFC00] text-black border border-yellow-300/50 hover:bg-[#F2F000] p-3.5 rounded-xl font-bold shadow-sm transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5">
+<span class="material-symbols-outlined text-black text-xl">auto_awesome</span>
+                         Snapchat
+                    </button>
+<button class="bg-black text-white border border-gray-800 hover:bg-gray-900 p-3.5 rounded-xl font-bold shadow-lg shadow-black/40 transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5">
+<span class="font-serif italic font-bold text-xl leading-none">𝕏</span>
+                         Twitter
+                    </button>
+<button class="bg-[#1877F2] text-white hover:bg-[#166fe5] p-3.5 rounded-xl font-bold shadow-lg shadow-blue-500/10 transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5">
+<span class="material-symbols-outlined text-xl">public</span>
+                        Facebook
+                   </button>
+<button class="bg-[#25D366] text-white hover:bg-[#22bf5b] p-3.5 rounded-xl font-bold shadow-lg shadow-green-500/10 transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5">
+<span class="material-symbols-outlined text-xl">chat_bubble</span>
+                        WhatsApp
+                   </button>
+</div>
+</div>
+</div>
+<div class="bg-white/5 p-5 border-t border-white/5 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="bg-white/10 border border-white/5 rounded-lg p-1.5 shadow-sm">
+<span class="material-symbols-outlined text-primary text-sm block">visibility</span>
+</div>
+<div class="text-xs text-gray-400 font-medium leading-tight">
+<span class="block text-white font-bold text-sm">52</span>
+                    Views
+                 </div>
+</div>
+<a class="inline-flex items-center gap-1.5 text-primary hover:text-secondary font-bold text-sm transition-colors group px-4 py-2 rounded-lg hover:bg-primary/10" href="#">
+                View My Messages
+                <span class="material-symbols-outlined text-lg group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</main>
+<footer class="py-8 text-center text-gray-500 text-sm">
+<div class="flex items-center justify-center gap-8 mb-4 font-medium">
+<a class="hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms</a>
+<a class="hover:text-primary transition-colors" href="#">Help</a>
+<a class="hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+<p class="text-xs opacity-60">© 2024 Textcognito. All rights reserved.</p>
+</footer>
+
+</body></html>
