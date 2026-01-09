@@ -8,7 +8,7 @@ const supabase = createClient(
    process.env.NEXT_PUBLIC_SUPABASE_URL, 
        process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_OR_ANON_KEY
 )
-const supabase = createClient();
+// const supabase = createClient();
 export default function MessageForm({ recipientId }) {
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
