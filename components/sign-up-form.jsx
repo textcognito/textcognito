@@ -54,19 +54,7 @@ export function SignUpForm({
         setIsLoading(false)
         return
       }
-      const res = await fetch('/api/check-email', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ email }),
-})
-
-const result = await res.json()
-
-if (result.exists) {
-  setError('Email already registered. Please log in.')
-  setIsLoading(false)
-  return
-}
+      
       // const { error } = await supabase.auth.signUp({
       //   email,
       //   password,
