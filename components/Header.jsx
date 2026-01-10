@@ -5,6 +5,7 @@ import { Cancel, Close } from "@mui/icons-material";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { createClient } from "@/lib/client";
+import { useRouter } from 'next/navigation'
 
 export default  function Header() {
   const [open, setOpen] = useState(false);
@@ -12,6 +13,7 @@ export default  function Header() {
   const pathname = usePathname();
   const [profile, setProfile] = useState(null);
   const supabase = createClient();
+  const router = useRouter()
     useEffect(() => {
     const getSession = async () => {
       const { data } = await supabase.auth.getSession();
@@ -35,24 +37,25 @@ export default  function Header() {
     // Listen for auth changes (login/logout)
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (_event, session) => {
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
-      if (session?.user) {
-        const { data: userProfile } = await supabase
-          .from('profiles')
-          .select('username')
-          .eq('id', session.user.id)
-          .single();
-        setProfile(userProfile);
-      } else {
-        setProfile(null); // Clear profile on logout
-      }
+      // if (session?.user) {
+      //   const { data: userProfile } = await supabase
+      //     .from('profiles')
+      //     .select('username')
+      //     .eq('id', session.user.id)
+      //     .single();
+      //   setProfile(userProfile);
+      // } else {
+      //   setProfile(null); // Clear profile on logout
+      // }
     });
 
     return () => subscription.unsubscribe();
   }, [supabase]);
   const handleLogout = async () => {
     await supabase.auth.signOut();
+    router.push('/auth/login')
     setOpen(false);
   };
 
@@ -180,6 +183,13 @@ export default  function Header() {
             >
               Profile
             </Link>
+            <Link
+              href="/messages"
+              onClick={() => setOpen(false)}
+              className="text-2xl"
+            >
+              Messages
+            </Link>
             <button
               onClick={handleLogout}
               className="text-2xl text-red-400"
@@ -199,7 +209,7 @@ export default  function Header() {
             <Link
               href="/auth/sign-up"
               onClick={() => setOpen(false)}
-              className="text-2xl text-[#8f48ec]"
+              className="text-2xl text-[#8f48ec] "
             >
               Get Started
             </Link>
