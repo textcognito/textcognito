@@ -23,7 +23,7 @@ export default function DashboardClient({ shareLink, username,messageCount }) {
         await navigator.share({
           title: 'Textcognito',
           text: `Send ${username} an anonymous message!`,
-          url: shareLink,
+          url: shareLink.replace('https://', ''),
         });
       } catch (err) {
         console.log('Share canceled:', err);
