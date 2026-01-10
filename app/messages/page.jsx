@@ -3,23 +3,23 @@ import { createClient } from '@/lib/server';
 import Link from 'next/link';
 
 // --- Utility: Relative Time Formatter ---
-function getRelativeTime(dateString) {
-  const date = new Date(dateString);
-  const now = new Date();
-  const seconds = Math.floor((now - date) / 1000);
+// function getRelativeTime(dateString) {
+//   const date = new Date(dateString);
+//   const now = new Date();
+//   const seconds = Math.floor((now - date) / 1000);
   
-  let interval = seconds / 31536000;
-  if (interval > 1) return Math.floor(interval) + " years ago";
-  interval = seconds / 2592000;
-  if (interval > 1) return Math.floor(interval) + " months ago";
-  interval = seconds / 86400;
-  if (interval > 1) return Math.floor(interval) + " days ago";
-  interval = seconds / 3600;
-  if (interval > 1) return Math.floor(interval) + " hours ago";
-  interval = seconds / 60;
-  if (interval > 1) return Math.floor(interval) + " mins ago";
-  return "Just now";
-}
+//   let interval = seconds / 31536000;
+//   if (interval > 1) return Math.floor(interval) + " years ago";
+//   interval = seconds / 2592000;
+//   if (interval > 1) return Math.floor(interval) + " months ago";
+//   interval = seconds / 86400;
+//   if (interval > 1) return Math.floor(interval) + " days ago";
+//   interval = seconds / 3600;
+//   if (interval > 1) return Math.floor(interval) + " hours ago";
+//   interval = seconds / 60;
+//   if (interval > 1) return Math.floor(interval) + " mins ago";
+//   return "Just now";
+// }
 
 export default async function Dashboard() {
   const supabase = await createClient();
@@ -46,7 +46,7 @@ export default async function Dashboard() {
   
   // Calculate new message count (e.g. messages less than 24h old or via a 'read' flag if you have one)
   const newMessagesCount = messages?.filter(m => {
-    const isRecent = (new Date() - new Date(m.created_at)) < 86400000; // 24 hours
+    const isRecent = (new Date() - new Date(m.created_at)) < 86400000000000; // 24 hours
     return isRecent; // OR check !m.read_at if you have that column
   }).length || 0;
 
@@ -130,7 +130,7 @@ export default async function Dashboard() {
           </div>
 
           {/* Messages Grid */}
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6 pb-12">
+          <div className="columns-1   gap-6 space-y-6 pb-12 ">
             {(!messages || messages.length === 0) ? (
                <div className="break-inside-avoid rounded-2xl p-8 border border-dashed border-white/10 text-center text-gray-500 bg-[#1a1a1a]/30">
                   <span className="material-symbols-outlined text-4xl mb-2 opacity-50">inbox</span>
@@ -171,13 +171,13 @@ export default async function Dashboard() {
 // --- Server Component for Message Card ---
 function MessageCard({ content, createdAt, isNew, variant }) {
   const isLarge = variant === 'large';
-  const timeAgo = getRelativeTime(createdAt);
+  // const timeAgo = getRelativeTime(createdAt);
 
   return (
     <div className={`
       break-inside-avoid rounded-2xl p-6 relative group overflow-hidden transition-all duration-300
       backdrop-blur-md border border-white/5 bg-[#1a1a1a]/60 hover:bg-[#242424]/80
-      hover:border-[#8f48ec]/30 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)]
+      hover:border-[#8f48ec]/30 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] max-w-lg mx-auto
     `}>
       
       {/* Top Gradient Line (Visible on hover or if New) */}
@@ -206,20 +206,22 @@ function MessageCard({ content, createdAt, isNew, variant }) {
 
       {/* Footer */}
       <div className="flex justify-between items-center pt-5 border-t border-white/5">
-        <span className="text-xs text-gray-500 font-medium">{timeAgo}</span>
+        {/* <span className="text-xs text-gray-500 font-medium">{timeAgo}</span> */}
+        <span className="text-xs text-gray-500 font-medium">{new Date(createdAt).toLocaleDateString()} at {new Date(createdAt).toLocaleTimeString()}</span>
+        
         
         <div className="flex gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
-          <button className="w-8 h-8 rounded-full bg-white/5 text-gray-400 hover:bg-[#8f48ec] hover:text-white flex items-center justify-center transition-all">
+          {/* <button className="w-8 h-8 rounded-full bg-white/5 text-gray-400 hover:bg-[#8f48ec] hover:text-white flex items-center justify-center transition-all">
             <span className="material-symbols-outlined text-[16px]">ios_share</span>
-          </button>
-          <form action={async () => {
+          </button> */}
+          {/* <form action={async () => {
              'use server'
              // Add delete logic here later
           }}>
             <button type="submit" className="w-8 h-8 rounded-full bg-white/5 hover:bg-red-500/20 hover:text-red-400 flex items-center justify-center text-gray-400 transition-all">
               <span className="material-symbols-outlined text-[16px]">delete</span>
             </button>
-          </form>
+          </form> */}
         </div>
       </div>
     </div>
