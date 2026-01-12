@@ -22,7 +22,7 @@ export const metadata = {
     'secret messages', 
     'instagram anonymous link', 
     'snapchat questions', 
-    'anonymous feedback', 
+    'anonymous feedback',
     'textcognito'
   ],
   authors: [{ name: "Adedeji Adebayo" }],
