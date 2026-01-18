@@ -5,6 +5,9 @@ import { createClient } from '@supabase/supabase-js'
 import { Send } from '@mui/icons-material'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import { Sparkle } from 'lucide-react'
+// import { GoogleGenAI } from "@google/genai";
+import { GenerateMessage } from './generate-message'
 
 // Initialize client-side Supabase (use your env variables)
 const supabase = createClient(
@@ -15,6 +18,7 @@ const supabase = createClient(
 export default function MessageForm({ recipientId }) {
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
+  const [loadin, setLoadin] = useState(false)
   const [sent, setSent] = useState(false)
 
   const handleSend = async (e) => {
@@ -39,6 +43,15 @@ export default function MessageForm({ recipientId }) {
       setSent(true)
       setMessage('')
     }
+  }
+
+  const handleGenerate = async(e) =>{
+    e.preventDefault();
+    setLoadin(true);
+
+    const aimessage =await GenerateMessage();
+    setMessage(aimessage);
+    setLoadin(false);
   }
 
   if (sent) {
@@ -80,16 +93,21 @@ export default function MessageForm({ recipientId }) {
       >
         {loading ? 'Sending...' : 'Send Anonymous Message'}
       </button> */}
+      <div className='flex gap-3'>
+      <button className='px-5 bg-white text-black rounded-sm flex items-center' disabled={loadin} onClick={handleGenerate}>
+        {loadin?<span className="loader"></span>:<Sparkle/>}
+        </button>
       <button 
         type="submit"
         disabled={loading}
-        className=" px-4 py-3  rounded-xl bg-gradient-to-r from-[#8f48ec] to-[#8c4aea] hover:shadow-[0_0_20px_-5px_#8e46ec] hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 text-white font-bold text-lg flex items-center justify-center gap-2 group/btn" 
+        className=" px-4 py-3 w-full  rounded-xl bg-gradient-to-r from-[#8f48ec] to-[#8c4aea] hover:shadow-[0_0_20px_-5px_#8e46ec] hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 text-white font-bold text-lg flex items-center justify-center gap-2 group/btn" 
          
       >
         <span>{loading ? 'Sending...' : 'Send Anonymous Message'}</span>
         {loading ? '' : <Send/>}
         {/* <span className="material-symbols-outlined text-xl group-hover/btn:translate-x-1 transition-transform">send</span> */}
       </button>
+      </div>
     </form>
   )
 }
