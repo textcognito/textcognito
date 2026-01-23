@@ -128,10 +128,7 @@ export default function TextcognitoLanding() {
                 <Link className="bg-[#8f48ec] hover:bg-[#8c4aea] text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg shadow-[#8f48ec]/25 hover:shadow-[#8f48ec]/40 flex items-center gap-2" href="/auth/sign-up">
                   Get Your Free Link
                 </Link>
-                <Link href={"/download"} className="bg-white/5 hover:bg-white/10 text-white border border-white/10 px-8 py-4 rounded-xl font-bold transition-all">
-                  Download the app!
-                  <span><Download/></span>
-                </Link>
+               
               </div>
               <div className="mt-12 flex gap-12 border-t border-white/5 text-white pt-8">
                 <div>
