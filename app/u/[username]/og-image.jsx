@@ -26,7 +26,7 @@ export default async function OgImage({ params }) {
   // but 'profiles' is usually the correct table for user data.
   const { data: profile } = await supabase
     .from("profiles") // CHANGED: 'posts' -> 'profiles' (Verify your table name)
-    .select("username, full_name") // Select fields you actually need
+    .select("username") // Select fields you actually need
     .eq("username", username)
     .single();
 
