@@ -1,6 +1,4 @@
-// app/u/[username]/og-image.jsx
 import { ImageResponse } from "next/og";
-
 export const runtime = "edge";
 
 export const size = {
@@ -13,12 +11,16 @@ export const contentType = "image/png";
 export default async function OgImage({ params }) {
   const { username } = await params;
 
+  const imageData = await fetch(new URL('../../../public/nobglogo.png', import.meta.url)).then(
+    (res) => res.arrayBuffer()
+  );
+
   return new ImageResponse(
     (
       <div style={{
         width: "100%",
         height: "100%",
-        background: "#0e1216",
+        background: "#1a1322",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -27,51 +29,53 @@ export default async function OgImage({ params }) {
         position: "relative",
         fontFamily: "sans-serif",
       }}>
-        {/* Background */}
+        {/* Background Gradient/Glow */}
         <div style={{
           position: "absolute",
-          inset: 0,
-          opacity: 0.1,
-          backgroundImage:
-            "radial-gradient(circle at 25px 25px, white 2%, transparent 0%)",
-          backgroundSize: "50px 50px",
+          top: "-50%",
+          left: "-50%",
+          width: "200%",
+          height: "200%",
+          background: "radial-gradient(circle, rgba(142, 70, 236, 0.15) 0%, transparent 50%)",
         }} />
 
         {/* Brand */}
-        <div style={{ display: "flex", alignItems: "center", marginBottom: 40 }}>
-          <div style={{
-            width: 80,
-            height: 80,
-            borderRadius: "50%",
-            background: "linear-gradient(to bottom right, #00C6FF, #00E5FF)",
-            marginRight: 20,
-          }} />
+        <div style={{ display: "flex", alignItems: "center", marginBottom: 30 }}>
+          {/* <img src={imageData} width="60" height="60" style={{ marginRight: 20 }} /> */}
           <span style={{
             fontSize: 40,
-            fontWeight: 700,
+            fontWeight: "bolder",
+            color: "#8f48ec",
+            display: "flex", // Explicit display flex for text container safety
           }}>
             Textcognito
           </span>
         </div>
 
         {/* Headline */}
-        <div style={{
+        {/* <div style={{
+          display: "flex", // REQUIRED: Explicit display flex
           textAlign: "center",
           padding: "0 60px",
           fontSize: 80,
           fontWeight: 900,
           lineHeight: 1.1,
+          background: "linear-gradient(to bottom, #fff, #a8a8a8)",
+          backgroundClip: "text",
+          color: "transparent",
         }}>
           @{username}
-        </div>
+        </div> */}
 
-        {/* CTA (THIS FIXES SEO SCORE) */}
+        {/* CTA */}
         <div style={{
+          display: "flex", // REQUIRED: Explicit display flex
           marginTop: 40,
-          fontSize: 36,
-          color: "#aaa",
+          fontSize: 32,
+          color: "#9d50f3",
+          fontWeight: 600,
         }}>
-          Send me an anonymous message →
+          Send {username} an anonymous message →
         </div>
       </div>
     ),
