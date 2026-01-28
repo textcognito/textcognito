@@ -1,6 +1,48 @@
 import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/server' // Your server client
-import MessageForm from './message-form'     // We'll create this next
+import MessageForm from './message-form'  
+// import OgImage from './og-image';   // We'll create this next
+
+export async function generateMetadata({ params }) {
+  const supabase = await createClient()
+  const { username } = await params;
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("id,username")
+    .eq("username", username)
+    .single();
+
+  // if (!profile) {
+  //   notFound();
+  // }
+  const Username = username.charAt(0).toUpperCase() + username.slice(1);
+  return {
+    title:`Send ${Username} a message` ,
+    description: `Send a completely anonymous message to ${profile.username}`,
+    openGraph: {
+      title:`Send ${profile.username} a message` ,
+      description: `Send a completely anonymous message to ${profile.username}`,
+      url: `https://textcognito.click/u/${profile.username}`,
+      // type: "webpage",
+      images: [
+        {
+          url: `https://textcognito.click/u/${profile.username}/og-image`,
+          width: 1200,
+          height: 630,
+          alt: `Send ${profile.username} a message`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title:`Send ${profile.username} a message` ,
+      description: `Send a completely anonymous message to ${profile.username}`,
+      images: [`https://textcognito.click/u/${profile.username}/og-image`],
+    },
+  };
+}
+
 
 export default async function PublicProfilePage({ params }) {
   const supabase = await createClient();
