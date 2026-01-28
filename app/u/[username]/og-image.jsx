@@ -1,38 +1,56 @@
-import { createClient } from "@/lib/client";
+// app/u/[username]/og-image.jsx
 import { ImageResponse } from "next/og";
+import { createClient } from "@supabase/supabase-js"; // Use the core library directly
 
 export const runtime = "edge";
 
-export const alt = "Theebayo Blog Post";
 export const size = {
-    width: 1200,
-    height: 630,
+  width: 1200,
+  height: 630,
 };
 
 export const contentType = "image/png";
 
 export default async function OgImage({ params }) {
-    const supabase = createClient()
-    const { username } = await params;
+  // 1. Initialize Supabase directly for Edge environment
+  // OG images are public, so usually the ANON key is sufficient/correct.
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_OR_ANON_KEY // Check your variable name in .env
+  );
 
-    // Initialize Supabase client
-    // const supabase = createClient(
-    //     process.env.NEXT_PUBLIC_SUPABASE_URL,
-    //     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-    // );
+  const { username } = await params;
 
-    // Fetch post title
-    const { data: profile } = await supabase
-        .from("profiles")
-        .select('id,username')
-        .eq("username", username)
-        .single();
+  // 2. Fetch from the correct table (assuming 'profiles' exists).
+  // If you really meant to fetch a user from 'posts', remove .single() and take the first one,
+  // but 'profiles' is usually the correct table for user data.
+  const { data: profile } = await supabase
+    .from("profiles") // CHANGED: 'posts' -> 'profiles' (Verify your table name)
+    .select("username, full_name") // Select fields you actually need
+    .eq("username", username)
+    .single();
 
-    // const username = post?.title || slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-
+  // 3. Handle missing data (User not found)
+  if (!profile) {
     return new ImageResponse(
-        (
-            <div style={{
+      (
+        <div style={{
+            width: "100%", height: "100%", background: "#0e1216", color: "white",
+            display: "flex", justifyContent: "center", alignItems: "center", fontSize: 60
+        }}>
+          User not found
+        </div>
+      ),
+      { ...size }
+    );
+  }
+
+  // 4. Dynamic Alt Text (Optional but good for SEO/Accessibility)
+  // You can't export a dynamic variable, but the ImageResponse is the visual representation.
+  
+  return new ImageResponse(
+    (
+      <div style={{
         width: "100%",
         height: "100%",
         background: "#0e1216",
@@ -42,19 +60,22 @@ export default async function OgImage({ params }) {
         alignItems: "center",
         color: "white",
         position: "relative",
-        fontFamily: "sans-serif",
+        // Note: For consistent fonts in Edge, consider loading a font file using `fonts: []` option
+        fontFamily: "sans-serif", 
       }}>
+        {/* ... (Background patterns keep as is) ... */}
+        
         <div style={{
           position: "absolute",
           inset: 0,
           opacity: 0.1,
-          backgroundImage:
-            "radial-gradient(circle at 25px 25px, white 2%, transparent 0%)",
+          backgroundImage: "radial-gradient(circle at 25px 25px, white 2%, transparent 0%)",
           backgroundSize: "50px 50px",
         }} />
 
         <div style={{ display: "flex", alignItems: "center", marginBottom: 40 }}>
-          <div style={{
+           {/* ... (Logo parts keep as is) ... */}
+           <div style={{
             width: 80,
             height: 80,
             borderRadius: "50%",
@@ -92,14 +113,15 @@ export default async function OgImage({ params }) {
           display: "flex",
           gap: 20,
         }}>
+          {/* You might want to make these dynamic too if they are in the profile */}
           <span>Software Engineering</span>
           <span>•</span>
           <span>Web Development</span>
         </div>
       </div>
-        ),
-        {
-            ...size,
-        }
-    );
+    ),
+    {
+      ...size,
+    }
+  );
 }
