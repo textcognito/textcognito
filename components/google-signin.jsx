@@ -40,7 +40,7 @@ export function GoogleLogin({ className, ...props }) {
   }
 
   return (
-    <div className={cn('flex flex-col gap-6 mt-5', className)} {...props}>
+    <div className={cn('flex flex-col gap-6 hidden mt-5', className)} {...props}>
        
           <form onSubmit={handleSocialLogin}>
             <div className="flex flex-col gap-6">
