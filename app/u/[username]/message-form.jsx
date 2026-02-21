@@ -67,7 +67,7 @@ export default function MessageForm({ recipientId }) {
           Send another
         </button>
         </div>
-        <Link href="/auth/sign-up" className='w-full flex items-center justify-center bg-[#9d50f3] text-white   py-3 rounded-xl mt-3'>
+        <Link href="/register" className='w-full flex items-center justify-center bg-[#D1C0EC] text-[#1b0e20] font-bold py-3 rounded-xl mt-3 hover:bg-[#C4ADDD] transition-colors'>
           Create your own unique link
           <ArrowRight/>
         </Link>
@@ -79,7 +79,7 @@ export default function MessageForm({ recipientId }) {
   return (
     <form onSubmit={handleSend} className="flex flex-col gap-4">
       <textarea
-        className="w-full bg-[#141118]/80 text-white rounded-xl border p-4 text-lg border-2 border-transparent focus:border-[#8e46ec]/50 outline-none transition-all "
+        className="w-full bg-[#121212]/80 text-white rounded-xl border p-4 text-lg border-2 border-transparent focus:border-[#D1C0EC]/50 outline-none transition-all "
         rows={4}
         placeholder="Type your secret message here..."
         value={message}
@@ -100,10 +100,10 @@ export default function MessageForm({ recipientId }) {
       <button 
         type="submit"
         disabled={loading}
-        className=" px-4 py-3 w-full  rounded-xl bg-gradient-to-r from-[#8f48ec] to-[#8c4aea] hover:shadow-[0_0_20px_-5px_#8e46ec] hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 text-white font-bold text-lg flex items-center justify-center gap-2 group/btn" 
+        className="px-4 py-3 w-full rounded-xl bg-[#D1C0EC] hover:bg-[#C4ADDD] hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 text-[#1b0e20] font-bold text-lg flex items-center justify-center gap-2 group/btn" 
          
       >
-        <span>{loading ? 'Sending...' : 'Send Anonymous Message'}</span>
+        <span>{loading ? 'Sending...' : 'Send'}</span>
         {loading ? '' : <Send/>}
         {/* <span className="material-symbols-outlined text-xl group-hover/btn:translate-x-1 transition-transform">send</span> */}
       </button>

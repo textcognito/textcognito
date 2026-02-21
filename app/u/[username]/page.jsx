@@ -138,10 +138,10 @@ export default async function PublicProfilePage({ params }) {
       */}
 
 
-      <div className=" xbg-[#181121]   text-slate-900 dark:text-white min-h-screen flex flex-col overflow-x-hidden selection:bg-[#8e46ec] selection:text-white">
+      <div className="bg-[#1a191b] text-white min-h-screen flex flex-col overflow-x-hidden selection:bg-[#D1C0EC] selection:text-[#1b0e20]">
 
         {/* Background Glow Effect */}
-        <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#8e46ec]/10 rounded-full blur-[120px] pointer-events-none z-0" />
+        <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#8D77A8]/10 rounded-full blur-[120px] pointer-events-none z-0" />
 
 
 
@@ -150,7 +150,7 @@ export default async function PublicProfilePage({ params }) {
           <div className="w-full max-w-lg">
 
             {/* Glassmorphism Card */}
-            <div className="relative bg-[#201c26]/60 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden p-6 sm:p-8">
+            <div className="relative bg-[#44334A]/20 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden p-6 sm:p-8">
 
               {/* Avatar Section */}
               <div className="flex flex-col items-center mb-6">
@@ -166,7 +166,7 @@ export default async function PublicProfilePage({ params }) {
                 </div> */}
                 <h1 className="text-3xl font-bold text-center text-white">Send me an anonymous message!</h1>
                 <p className="text-gray-500">
-                  Sending to <span className="font-bold text-[#9d50f3]">@{profile.username}</span>
+                  Sending to <span className="font-bold text-[#D1C0EC]">@{profile.username}</span>
                 </p>
               </div>
 
@@ -205,9 +205,9 @@ export default async function PublicProfilePage({ params }) {
 
             {/* Additional Help Links */}
             <div className="mt-8 flex justify-center gap-6">
-              <a className="text-slate-500 hover:text-[#8e46ec] text-sm transition-colors" href="#">How it works</a>
-              <a className="text-slate-500 hover:text-[#8e46ec] text-sm transition-colors" href="#">Privacy Policy</a>
-              <a className="text-slate-500 hover:text-[#8e46ec] text-sm transition-colors" href="#">Report User</a>
+              <a className="text-gray-500 hover:text-[#D1C0EC] text-sm transition-colors" href="#">How it works</a>
+              <a className="text-gray-500 hover:text-[#D1C0EC] text-sm transition-colors" href="#">Privacy Policy</a>
+              <a className="text-gray-500 hover:text-[#D1C0EC] text-sm transition-colors" href="#">Report User</a>
             </div>
           </div>
         </main>
