@@ -27,7 +27,8 @@ export default function RootLayout({ children }) {
         <link rel="apple-touch-icon" href="/favicon.ico" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased  bg-gradient-to-tr from-[#15121a]  via-[#141118] to-[#1c1425] `}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased text-white `}
+        // className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#1b0e20] text-white selection:bg-[#D1C0EC] selection:text-[#1b0e20]`}
       >
         <Header/>
         <div >
